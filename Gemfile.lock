@@ -58,6 +58,57 @@ GIT
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
 
+GIT
+  remote: git://github.com/rspec/rspec-core.git
+  revision: cc869c8b8c1e00991b8be0c71faa9a5a74b8fd22
+  specs:
+    rspec-core (3.5.0.pre)
+      rspec-support (= 3.5.0.pre)
+
+GIT
+  remote: git://github.com/rspec/rspec-expectations.git
+  revision: 1500d2163f53bb706083b4ba95f0f21d2d94ea7f
+  specs:
+    rspec-expectations (3.5.0.pre)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (= 3.5.0.pre)
+
+GIT
+  remote: git://github.com/rspec/rspec-mocks.git
+  revision: a25774f2b54ab199c355ff92afff75513e773531
+  specs:
+    rspec-mocks (3.5.0.pre)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (= 3.5.0.pre)
+
+GIT
+  remote: git://github.com/rspec/rspec-rails.git
+  revision: 253a54d924a46e2ffd1848d40bd269f17725c0f5
+  specs:
+    rspec-rails (3.5.0.pre)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (= 3.5.0.pre)
+      rspec-expectations (= 3.5.0.pre)
+      rspec-mocks (= 3.5.0.pre)
+      rspec-support (= 3.5.0.pre)
+
+GIT
+  remote: git://github.com/rspec/rspec-support.git
+  revision: 5c15743508a8dfcf272bbea39035ebbc6f3748e1
+  specs:
+    rspec-support (3.5.0.pre)
+
+GIT
+  remote: git://github.com/rspec/rspec.git
+  revision: fac1b06a2e74b2ce33b7a9e6b8e6cb74c8f24e47
+  specs:
+    rspec (3.5.0.pre)
+      rspec-core (= 3.5.0.pre)
+      rspec-expectations (= 3.5.0.pre)
+      rspec-mocks (= 3.5.0.pre)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -70,7 +121,14 @@ GEM
     builder (3.2.2)
     byebug (9.0.5)
     concurrent-ruby (1.0.2)
+    database_cleaner (1.5.3)
+    diff-lcs (1.2.5)
     erubis (2.7.0)
+    factory_girl (4.7.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (4.7.0)
+      factory_girl (~> 4.7.0)
+      railties (>= 3.0.0)
     ffi (1.9.10)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
@@ -100,6 +158,7 @@ GEM
     puma (3.4.0)
     rack (2.0.0.rc1)
       json
+    rack-cors (0.4.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails-dom-testing (2.0.1)
@@ -111,6 +170,8 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    shoulda-matchers (3.1.1)
+      activesupport (>= 4.0.0)
     spring (1.7.1)
     spring-watcher-listen (2.0.0)
       listen (>= 2.7, < 4.0)
@@ -136,11 +197,22 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.0)
+  bcrypt (~> 3.1.7)
   byebug
+  database_cleaner
+  factory_girl_rails
   knock
   listen (~> 3.0.5)
   puma (~> 3.0)
+  rack-cors
   rails!
+  rspec!
+  rspec-core!
+  rspec-expectations!
+  rspec-mocks!
+  rspec-rails!
+  rspec-support!
+  shoulda-matchers
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3
