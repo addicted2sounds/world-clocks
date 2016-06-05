@@ -98,4 +98,23 @@ RSpec.describe 'Timezones', :type => :request do
       end
     end
   end
+
+  describe 'DELETE /timezones/:id' do
+    let!(:timezone) { create :timezone, user: user }
+    it 'fails without authentication' do
+      delete timezone_path(timezone)
+      expect(response).to have_http_status(401)
+    end
+
+    context 'when authenticated' do
+      let(:request) do
+        delete timezone_path(timezone), params: { timezone: valid_attributes },
+               headers: auth_headers(user)
+      end
+
+      it 'removes record' do
+        expect { request }.to change(Timezone, :count).by -1
+      end
+    end
+  end
 end

@@ -4,7 +4,11 @@ class TimezonePolicy < ApplicationPolicy
   end
 
   def update?
-    user.can_manage_alias_timezone? or record.user.id.equal? user.id
+    user.can_manage_alias_timezones? or record.user.id.equal? user.id
+  end
+
+  def destroy?
+    update?
   end
 
   def permitted_attributes
