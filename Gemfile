@@ -26,6 +26,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails', github: 'rspec/rspec-rails'
   gem 'factory_girl_rails'
+  gem 'faker'
   gem 'pry-rails'
   gem 'guard-rspec'
   gem 'guard-rails', require: false
