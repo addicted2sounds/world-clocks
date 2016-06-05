@@ -84,6 +84,18 @@ RSpec.describe 'Timezones', :type => :request do
           expect(Timezone.last.name).to eq valid_attributes[:name]
         end
       end
+
+      context 'with invalid attributes' do
+        let(:request) do
+          post '/timezones', params: { timezone: invalid_attributes },
+               headers: auth_headers(user)
+        end
+
+        it 'fails with unprocessable status' do
+          request
+          expect(response.status).to eq 422
+        end
+      end
     end
   end
 end

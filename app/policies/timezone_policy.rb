@@ -3,6 +3,10 @@ class TimezonePolicy < ApplicationPolicy
     true
   end
 
+  def update?
+    user.can_manage_alias_timezone? or record.user.id.equal? user.id
+  end
+
   def permitted_attributes
     attrs = [:name, :city, :difference]
     attrs.push :user_id if user.can_manage_alias_timezones?
