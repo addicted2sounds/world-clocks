@@ -7,16 +7,8 @@ RSpec.describe TimezonesController, :type => :routing do
       expect(:get => "/timezones").to route_to("timezones#index")
     end
 
-    it "routes to #new" do
-      expect(:get => "/timezones/new").to route_to("timezones#new")
-    end
-
     it "routes to #show" do
       expect(:get => "/timezones/1").to route_to("timezones#show", :id => "1")
-    end
-
-    it "routes to #edit" do
-      expect(:get => "/timezones/1/edit").to route_to("timezones#edit", :id => "1")
     end
 
     it "routes to #create" do
