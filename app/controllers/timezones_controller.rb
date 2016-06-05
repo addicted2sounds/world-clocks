@@ -15,8 +15,9 @@ class TimezonesController < ApplicationController
 
   # POST /timezones
   def create
-    @timezone = Timezone.new(timezone_params)
-
+    @timezone = Timezone.new permitted_attributes(Timezone)
+    @timezone.user = current_user if current_user.user?
+    authorize(@timezone)
     if @timezone.save
       render json: @timezone, status: :created, location: @timezone
     else
@@ -42,10 +43,5 @@ class TimezonesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_timezone
       @timezone = Timezone.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def timezone_params
-      params.require(:timezone).permit(:user_id, :name, :city, :difference)
     end
 end
