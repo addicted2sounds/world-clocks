@@ -20,6 +20,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rack-cors'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'knock'
+gem 'pundit'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -31,6 +32,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'guard-rails', require: false
   gem 'guard-livereload'
+  gem 'terminal-notifier-guard'
 end
 
 group :development do

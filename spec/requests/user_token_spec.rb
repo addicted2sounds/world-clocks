@@ -19,7 +19,7 @@ RSpec.describe 'User token', type: :request do
         post '/user_token', params: { auth: invalid_credentials }
       end
 
-      it 'set unauthorized status' do
+      it 'set not found status' do
         expect(response.status).to eq 404
       end
     end
