@@ -4,6 +4,7 @@ class UsersController < ApplicationController
 
   # GET /users
   def index
+    authorize User
     @users = policy_scope(User)
     render json: @users
   end
@@ -27,6 +28,7 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
+    authorize @user
     if @user.update(permitted_attributes User)
       render json: @user
     else
@@ -36,12 +38,12 @@ class UsersController < ApplicationController
 
   # DELETE /users/1
   def destroy
+    authorize @user
     @user.destroy
   end
 
   private
     def set_user
       @user = User.find(params[:id])
-      authorize @user
     end
 end

@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/nsarno/knock.git
+  revision: 741d4dd34a6fecccedb7249516397d2d7814d4ca
+  specs:
+    knock (1.5)
+      bcrypt (~> 3.1)
+      jwt (~> 1.5)
+      rails (>= 4.2)
+
+GIT
   remote: git://github.com/rails/rails.git
   revision: 66ebbc4952f6cfb37d719f63036441ef98149418
   specs:
@@ -166,10 +175,6 @@ GEM
     i18n (0.7.0)
     json (1.8.3)
     jwt (1.5.4)
-    knock (1.5)
-      bcrypt (~> 3.1)
-      jwt (~> 1.5)
-      rails (>= 4.2)
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -256,7 +261,7 @@ DEPENDENCIES
   guard-livereload
   guard-rails
   guard-rspec
-  knock
+  knock!
   listen (~> 3.0.5)
   pry-rails
   puma (~> 3.0)
