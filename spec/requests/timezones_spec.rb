@@ -8,12 +8,12 @@ RSpec.describe 'Timezones', :type => :request do
 
   describe 'GET /timezones' do
     it 'fails without authentication' do
-      get timezones_path
+      get api_timezones_path
       expect(response).to have_http_status(401)
     end
 
     context 'when validated' do
-      let(:request) { get timezones_path, headers: auth_headers(user) }
+      let(:request) { get api_timezones_path, headers: auth_headers(user) }
 
       context 'when no timezones defined' do
         it 'returns empty array' do
@@ -35,13 +35,13 @@ RSpec.describe 'Timezones', :type => :request do
 
   describe 'POST /timezones' do
     it 'fails without authentication' do
-      post timezones_path
+      post api_timezones_path
       expect(response).to have_http_status(401)
     end
 
     context 'when authenticated' do
       let(:request) do
-        post '/timezones', params: { timezone: valid_attributes },
+        post '/api/timezones', params: { timezone: valid_attributes },
              headers: auth_headers(user)
       end
 
@@ -53,7 +53,7 @@ RSpec.describe 'Timezones', :type => :request do
 
       context 'with invalid attributes' do
         let(:request) do
-          post '/timezones', params: { timezone: invalid_attributes },
+          post '/api/timezones', params: { timezone: invalid_attributes },
                headers: auth_headers(user)
         end
 
@@ -65,18 +65,19 @@ RSpec.describe 'Timezones', :type => :request do
     end
   end
 
-  describe 'PATCH /timezones/:id' do
+  describe 'PATCH /api/timezones/:id' do
 
     it 'fails without authentication' do
-      patch timezone_path(timezone)
+      patch api_timezone_path(timezone)
       expect(response).to have_http_status(401)
     end
 
     context 'when authenticated' do
       context 'with valid attributes' do
         let(:request) do
-          post '/timezones', params: { timezone: valid_attributes },
-               headers: auth_headers(user)
+          patch api_timezone_path(timezone),
+                params: { timezone: valid_attributes },
+                headers: auth_headers(user)
         end
 
         it 'updates user record' do
@@ -87,7 +88,7 @@ RSpec.describe 'Timezones', :type => :request do
 
       context 'with invalid attributes' do
         let(:request) do
-          post '/timezones', params: { timezone: invalid_attributes },
+          post '/api/timezones', params: { timezone: invalid_attributes },
                headers: auth_headers(user)
         end
 
@@ -102,13 +103,13 @@ RSpec.describe 'Timezones', :type => :request do
   describe 'DELETE /timezones/:id' do
     let!(:timezone) { create :timezone, user: user }
     it 'fails without authentication' do
-      delete timezone_path(timezone)
+      delete api_timezone_path(timezone)
       expect(response).to have_http_status(401)
     end
 
     context 'when authenticated' do
       let(:request) do
-        delete timezone_path(timezone), params: { timezone: valid_attributes },
+        delete api_timezone_path(timezone), params: { timezone: valid_attributes },
                headers: auth_headers(user)
       end
 

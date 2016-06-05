@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :timezones
-  resources :users
+  namespace :api do
+    resources :timezones
+    resources :users
+  end
   post 'user_token' => 'user_token#create'
 end

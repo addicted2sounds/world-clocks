@@ -9,6 +9,7 @@ RSpec.describe 'User token', type: :request do
       before :each do
         post '/user_token', params: { auth: valid_credentials }
       end
+
       it 'responds with token' do
         expect(json).to include 'jwt'
       end
