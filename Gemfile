@@ -50,6 +50,7 @@ group :test do
   gem 'rspec-expectations', github: 'rspec/rspec-expectations'
   gem 'rspec-support', github: 'rspec/rspec-support'
   gem 'rspec-core', github: 'rspec/rspec-core'
+  gem 'pundit-matchers'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
