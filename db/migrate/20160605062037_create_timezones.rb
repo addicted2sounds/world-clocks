@@ -4,7 +4,7 @@ class CreateTimezones < ActiveRecord::Migration[5.1]
       t.references :user, foreign_key: true
       t.string :name
       t.string :city
-      t.string :difference
+      t.integer :difference
 
       t.timestamps
     end

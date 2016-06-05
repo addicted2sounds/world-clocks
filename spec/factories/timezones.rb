@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :timezone do
-    user nil
-    name "MyString"
-    city "MyString"
-    difference "MyString"
+    user
+    name { Faker::Lorem.word }
+    city { Faker::Address.city }
+    difference { Faker::Number.between(-12, 12) }
   end
 end
