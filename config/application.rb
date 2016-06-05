@@ -28,6 +28,7 @@ module WorldTimes
     config.api_only = true
     config.generators do |g|
       g.test_framework :rspec
+      g.controller_specs false
       g.view_specs false
       g.helper_specs false
       g.orm :active_record
