@@ -4,5 +4,6 @@ FactoryGirl.define do
     password { Faker::Internet.password }
     role :user
     trait(:manager) { role :manager }
+    trait(:admin) { role :admin }
   end
 end

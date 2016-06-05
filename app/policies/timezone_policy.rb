@@ -5,13 +5,13 @@ class TimezonePolicy < ApplicationPolicy
 
   def permitted_attributes
     attrs = [:name, :city, :difference]
-    attrs.push :user_id if %w(manager admin).include? user.role
+    attrs.push :user_id if user.can_manage_alias_timezones?
     attrs
   end
 
   class Scope < Scope
     def resolve
-      return scope.all if %w(manager admin).include? user.role
+      return scope.all if user.can_manage_alias_timezones?
       scope.joins(:user).where(users: { id: user.id })
     end
   end
