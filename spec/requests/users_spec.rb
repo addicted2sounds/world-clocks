@@ -16,7 +16,6 @@ RSpec.describe 'Users', :type => :request do
         let(:user) { create :user }
 
         it 'returns forbidden status' do
-          pending 'whaaaat?'
           request
           expect(response.status).to eq 303
         end
@@ -73,6 +72,18 @@ RSpec.describe 'Users', :type => :request do
         request
         expect(response).to have_http_status 422
       end
+    end
+  end
+
+  describe 'DELETE /users/:id' do
+    let!(:user) { create :user }
+
+    let(:request) do
+      delete user_path(user), headers: auth_headers(user)
+    end
+
+    it 'removes record' do
+      expect { request }.to change(Timezone, :count).by -1
     end
   end
 end
