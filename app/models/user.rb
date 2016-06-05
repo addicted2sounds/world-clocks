@@ -1,8 +1,10 @@
+require 'email_validator'
+
 class User < ApplicationRecord
   has_secure_password
   enum role: [:user, :manager, :admin]
   has_many :timezones
-  validates :email, presence: true, uniqueness: true
+  validates :email, email: true, uniqueness: true
 
   def self.from_token_payload(payload)
     self.find_by email: payload['email']
