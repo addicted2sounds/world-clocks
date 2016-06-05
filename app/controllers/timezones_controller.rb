@@ -4,8 +4,7 @@ class TimezonesController < ApplicationController
 
   # GET /timezones
   def index
-    @timezones = Timezone.all
-
+    @timezones = policy_scope Timezone
     render json: @timezones
   end
 

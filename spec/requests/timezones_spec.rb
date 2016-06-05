@@ -10,10 +10,21 @@ RSpec.describe 'Timezones', :type => :request do
     end
 
     context 'when validated' do
+      before :each do
+        get timezones_path, headers: auth_headers(user)
+      end
+
       context 'when no timezones defined' do
         it 'returns empty array' do
-          get timezones_path, headers: auth_headers(user)
-          p response.status
+          expect(json['data']).to eq []
+        end
+      end
+
+      context 'when has timezones' do
+        before(:each) { create :timezone, user: user }
+
+        it 'has timezone' do
+          expect(json['data'].count).to eq 1
         end
       end
     end
