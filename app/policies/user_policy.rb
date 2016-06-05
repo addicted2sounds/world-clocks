@@ -1,4 +1,9 @@
 class UserPolicy < ApplicationPolicy
+  def index?
+    p user.can_manage_users?
+    user.can_manage_users?
+  end
+
   def create?
     true
   end
@@ -13,7 +18,7 @@ class UserPolicy < ApplicationPolicy
 
   def permitted_attributes
     attrs = [:email, :password, :password_confirmation]
-    attrs.push :role if user.can_manage_alias_timezones?
+    attrs.push :role if user.try :can_manage_alias_timezones?
     attrs
   end
 

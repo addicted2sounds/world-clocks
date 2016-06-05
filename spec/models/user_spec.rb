@@ -6,6 +6,15 @@ RSpec.describe User, :type => :model do
     it { is_expected.to define_enum_for(:role).with [:user, :manager, :admin] }
   end
 
+  describe 'relations' do
+    it { is_expected.to have_many :timezones }
+  end
+
+  describe 'validations' do
+    it { is_expected.to validate_presence_of :email }
+    it { is_expected.to validate_uniqueness_of :email }
+  end
+
   describe '.can_manage_alias_timezones?' do
     it 'is not allowed for regular user' do
       expect(create(:user).can_manage_alias_timezones?).to be_falsey

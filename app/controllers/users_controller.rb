@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
-  before_action :authenticate_user
+  before_action :authenticate_user, except: [:create]
 
   # GET /users
   def index
@@ -15,7 +15,8 @@ class UsersController < ApplicationController
 
   # POST /users
   def create
-    @user = User.new(user_params)
+    skip_authorization
+    @user = User.new(permitted_attributes User)
 
     if @user.save
       render json: @user, status: :created, location: @user
@@ -39,13 +40,8 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def user_params
-      params.fetch(:user, {})
+      authorize @user
     end
 end
