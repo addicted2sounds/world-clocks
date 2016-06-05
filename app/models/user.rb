@@ -9,4 +9,8 @@ class User < ApplicationRecord
   def can_manage_alias_timezones?
     manager? or admin?
   end
+
+  def can_manage_users?
+    admin?
+  end
 end
