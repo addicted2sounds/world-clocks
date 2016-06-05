@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Users', :type => :request do
+  let(:user) { create :user }
   let(:valid_attributes) { attributes_for :user }
   let(:invalid_attributes) { attributes_for :user, email: '' }
   describe 'GET /users' do
@@ -43,6 +44,32 @@ RSpec.describe 'Users', :type => :request do
     context 'when invalid attributes' do
       let(:request) { post users_path, params: { user: invalid_attributes } }
       it 'returns unprocessable entity status' do
+        request
+        expect(response).to have_http_status 422
+      end
+    end
+  end
+
+  describe 'PATCH /users/:id' do
+    context 'when valid attributes' do
+      let(:request) do
+        patch user_path(user), params: { user: valid_attributes },
+              headers: auth_headers(user)
+      end
+
+      it 'updates user' do
+        request
+        expect(User.last.email).to eq valid_attributes[:email]
+      end
+    end
+
+    context 'when invalid attributes' do
+      let(:request) do
+        patch user_path(user), params: { user: invalid_attributes },
+              headers: auth_headers(user)
+      end
+
+      it 'has unprocessable entity status' do
         request
         expect(response).to have_http_status 422
       end

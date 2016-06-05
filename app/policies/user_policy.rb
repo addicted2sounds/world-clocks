@@ -1,6 +1,5 @@
 class UserPolicy < ApplicationPolicy
   def index?
-    p user.can_manage_users?
     user.can_manage_users?
   end
 
@@ -9,7 +8,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    user.can_manage_users? or record.user.id.equal? user.id
+    user.can_manage_users? or record.id.equal? user.id
   end
 
   def destroy?
