@@ -6,12 +6,12 @@ RSpec.describe 'Users', :type => :request do
   let(:invalid_attributes) { attributes_for :user, email: '' }
   describe 'GET /users' do
     it 'fails without authentication' do
-      get users_path
+      get api_users_path
       expect(response).to have_http_status(401)
     end
 
     context 'when authenticated' do
-      let(:request) { get users_path, headers: auth_headers(user) }
+      let(:request) { get api_users_path, headers: auth_headers(user) }
       context 'when forbidden to manage users' do
         let(:user) { create :user }
 
@@ -31,16 +31,16 @@ RSpec.describe 'Users', :type => :request do
     end
   end
 
-  describe 'POST /users' do
+  describe 'POST /api/users' do
     context 'when valid attributes' do
-      let(:request) { post users_path, params: { user: valid_attributes } }
+      let(:request) { post api_users_path, params: { user: valid_attributes } }
       it 'creates new user' do
         expect { request }.to change(User, :count).by 1
       end
     end
 
     context 'when invalid attributes' do
-      let(:request) { post users_path, params: { user: invalid_attributes } }
+      let(:request) { post api_users_path, params: { user: invalid_attributes } }
       it 'returns unprocessable entity status' do
         request
         expect(response).to have_http_status 422
@@ -51,7 +51,7 @@ RSpec.describe 'Users', :type => :request do
   describe 'PATCH /users/:id' do
     context 'when valid attributes' do
       let(:request) do
-        patch user_path(user), params: { user: valid_attributes },
+        patch api_user_path(user), params: { user: valid_attributes },
               headers: auth_headers(user)
       end
 
@@ -63,7 +63,7 @@ RSpec.describe 'Users', :type => :request do
 
     context 'when invalid attributes' do
       let(:request) do
-        patch user_path(user), params: { user: invalid_attributes },
+        patch api_user_path(user), params: { user: invalid_attributes },
               headers: auth_headers(user)
       end
 
@@ -78,7 +78,7 @@ RSpec.describe 'Users', :type => :request do
     let!(:user) { create :user }
 
     let(:request) do
-      delete user_path(user), headers: auth_headers(user)
+      delete api_user_path(user), headers: auth_headers(user)
     end
 
     it 'removes record' do
