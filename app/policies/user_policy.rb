@@ -19,8 +19,7 @@ class UserPolicy < ApplicationPolicy
 
   class Scope < Scope
     def resolve
-      return scope.all if user.can_manage_alias_timezones?
-      scope.joins(:user).where(users: { id: user.id })
+      scope.all
     end
   end
 end
