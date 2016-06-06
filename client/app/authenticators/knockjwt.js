@@ -5,7 +5,7 @@ import config from '../config/environment';
 const { RSVP: { Promise }, $: { ajax }, run } = Ember;
 
 export default Base.extend({
-  tokenEndpoint: `${config.host}/knock/auth`,
+  tokenEndpoint: `${config.host}/user_token`,
 
   restore(data) {
     return new Promise((resolve, reject) => {
