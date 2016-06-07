@@ -17,6 +17,7 @@ export default function() {
   });
 
   this.get('/timezones', ({ timezone }, request) => {
+    console.log(timezone);
     const token = Ember.get(request, 'requestHeaders.Authorization');
     if (token == 'Bearer cola') {
       return timezone.all();

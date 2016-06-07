@@ -1,4 +1,4 @@
-import { Factory, belongsTo } from 'ember-cli-mirage';
+import { Factory, belongsTo, faker } from 'ember-cli-mirage';
 
 export default Factory.extend({
   name: faker.lorem.word(),
