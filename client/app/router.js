@@ -6,6 +6,13 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('timezones', function() {
+    this.route('new');
+
+    this.route('timezone', {
+      path: ':id'
+    });
+  });
 });
 
 export default Router;

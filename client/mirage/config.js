@@ -16,10 +16,10 @@ export default function() {
     }
   });
 
-  this.get('/timezones', ({ timezone }, request) => {
+  this.get('/timezones', ({ timezones }, request) => {
     const token = Ember.get(request, 'requestHeaders.Authorization');
     if (token == 'Bearer cola') {
-      return timezone.all();
+      return timezones.all();
     } else {
       return new Mirage.Response(401, {}, {});
     }

@@ -23,11 +23,9 @@ module.exports = function(environment) {
     enabled: false
   };
 
-  ENV['simple-auth'] = {
-    store: 'simple-auth-session-store:local-storage',
-    authorizer: 'authorizer:knockjwt',
-    crossOriginWhiteList: ['http://localhost:3000'],
-    routeAfterAuthentication: '/'
+  ENV['ember-simple-auth'] = {
+    routeAfterAuthentication: '/',
+    authenticationRoute: '/'
   };
 
   if (environment === 'development') {

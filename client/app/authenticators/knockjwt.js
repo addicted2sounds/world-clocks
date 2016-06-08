@@ -9,7 +9,7 @@ export default Base.extend({
 
   restore(data) {
     return new Promise((resolve, reject) => {
-      if (Ember.isEmpty(data.token)) {
+      if (!Ember.isEmpty(data.token)) {
         resolve(data);
       } else {
         reject();
