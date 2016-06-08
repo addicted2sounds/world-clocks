@@ -12,7 +12,6 @@ moduleForAcceptance('Acceptance | timezones');
 
 test('visiting /timezones', function(assert) {
   authenticateSession(this.application);
-  console.log('aaaa');
   visit('/timezones');
   const sesh = currentSession(this.application);
   const isAuthed = Ember.get(sesh, 'isAuthenticated');
@@ -22,5 +21,13 @@ test('visiting /timezones', function(assert) {
   andThen(function() {
     console.log(isAuthed);
     assert.equal(currentURL(), '/timezones');
+  });
+});
+
+test('redirects to / when unauthorized', function(assert) {
+  invalidateSession(this.application);
+  visit('/timezones');
+  andThen(function() {
+    assert.equal(currentURL(), '/');
   });
 });

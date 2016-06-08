@@ -4,5 +4,5 @@ import attr from 'ember-data/attr';
 export default Model.extend({
   name: attr('string'),
   city: attr('string'),
-  difference: attr('integer')
+  difference: attr('number')
 });
