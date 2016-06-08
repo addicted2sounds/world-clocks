@@ -1,0 +1,18 @@
+<table class="table">
+  <thead>
+    <th>Name</th>
+    <th>City</th>
+    <th></th>
+  </thead>
+  <tbody>
+    {{#each timezones as |timezone|}}
+      <tr>
+        <td>{{timezone.name}}</td>
+        <td>{{timezone.city}}</td>
+        <td>
+          {{#link-to 'timezones.timezone' timezone}}Show{{/link-to}}
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
