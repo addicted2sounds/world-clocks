@@ -1,5 +1,4 @@
-<h1>Timezones list</h1>
-{{#each model as |timezon|}}
-  <p>timezone</p>
-{{/each}}
-{{outlet}}
+<ol>
+  <li>{{#link-to 'timezones'}}Timezones{{/link-to}}</li>
+</ol>
+{{timezone-list timezones=model}}
