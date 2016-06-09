@@ -32,7 +32,9 @@ test('creates new timezone', function(assert) {
   visit('/timezones/new');
   andThen(function() {
     fillIn('.timezone-name', 'test');
-    //click('button');
+    fillIn('.timezone-city', 'test');
+    fillIn('.timezone-difference', '-5');
+    click('button');
   });
   andThen(function() {
     assert.equal(currentURL(), '/timezones/1');

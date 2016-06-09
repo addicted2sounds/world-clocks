@@ -1,9 +1,6 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  model() {
-    return this.store.createRecord('timezone');
-  },
   actions: {
     save(timezone) {
       timezone.save().then(() => {
@@ -12,5 +9,8 @@ export default Ember.Route.extend({
         alert('cannot save');
       });
     }
-  }
+  },
+  model() {
+    return this.store.createRecord('timezone');
+  },
 });
