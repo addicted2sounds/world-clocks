@@ -8,11 +8,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
 
   actions: {
     saved(timezone) {
-      timezone.save().then(() => {
-        this.transitionTo('timezones.timezone', timezone);
-      }).catch(() => {
-        alert('cannot save');
-      });
+      this.transitionTo('timezones.timezone', timezone);
     }
   },
 });

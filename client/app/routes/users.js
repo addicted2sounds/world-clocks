@@ -4,11 +4,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   actions: {
     saved(user) {
-      timezone.save().then(() => {
-        this.transitionTo('users.user', user);
-      }).catch(() => {
-        alert('cannot save');
-      });
+      this.transitionTo('users.user', user);
     }
   },
 });
