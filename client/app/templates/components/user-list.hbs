@@ -1,0 +1,17 @@
+<table class="table">
+  <thead>
+    <th>Email</th>
+    <th>Role</th>
+    <th></th>
+  </thead>
+  <tbody>
+    {{#each users as |user|}}
+      <tr>
+        <td>{{user.email}}</td>
+        <td>{{user.role}}</td>
+        <td>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

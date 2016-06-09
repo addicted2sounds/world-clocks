@@ -13,6 +13,7 @@
     <div class="collapse navbar-collapse" id="main-navbar">
       <ul class="nav navbar-nav">
         {{#link-to 'timezones.new' tagName="li"}}<a href="">Add timezone</a>{{/link-to}}
+        {{#link-to 'users' tagName="li"}}<a href="">Users</a>{{/link-to}}
       </ul>
       {{#if session.isAuthenticated}}
       {{else}}
