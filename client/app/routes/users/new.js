@@ -7,7 +7,7 @@ export default Ember.Route.extend({
   actions: {
     willTransition() {
       let user = this.controller.get('model');
-      user.destroyRecord();
+      if (user.get('isNew')) user.destroyRecord();
     }
   }
 });
