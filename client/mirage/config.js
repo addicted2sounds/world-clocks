@@ -24,6 +24,11 @@ export default function() {
       return new Mirage.Response(401, {}, {});
     }
   });
+  this.post('/users', function(db, request) {
+    var attrs = JSON.parse(request.requestBody).user;
+    var user = db.users.create(attrs);
+    return new Mirage.Response(201, {}, user);
+  });
 
   this.get('/timezones', ({ timezones }, request) => {
     const token = Ember.get(request, 'requestHeaders.Authorization');
@@ -33,5 +38,4 @@ export default function() {
       return new Mirage.Response(401, {}, {});
     }
   });
-  this.post('/users');
 }
