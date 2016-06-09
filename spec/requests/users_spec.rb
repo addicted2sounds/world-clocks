@@ -31,6 +31,10 @@ RSpec.describe 'Users', :type => :request do
     end
   end
 
+  describe 'GET /users/:id' do
+
+  end
+
   describe 'POST /api/users' do
     context 'when valid attributes' do
       let(:request) { post api_users_path, params: { user: valid_attributes } }

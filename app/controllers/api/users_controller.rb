@@ -12,6 +12,7 @@ module Api
 
     # GET /users/1
     def show
+      authorize @user
       render json: @user
     end
 
