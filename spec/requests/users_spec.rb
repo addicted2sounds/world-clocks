@@ -25,7 +25,7 @@ RSpec.describe 'Users', :type => :request do
 
         it 'returns list of users' do
           request
-          expect(json['data'].count).to eq 1
+          expect(json['users'].count).to eq 1
         end
       end
     end

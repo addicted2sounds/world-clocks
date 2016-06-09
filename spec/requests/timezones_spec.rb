@@ -18,7 +18,7 @@ RSpec.describe 'Timezones', :type => :request do
       context 'when no timezones defined' do
         it 'returns empty array' do
           request
-          expect(json['data']).to eq []
+          expect(json['timezones']).to eq []
         end
       end
 
@@ -27,7 +27,7 @@ RSpec.describe 'Timezones', :type => :request do
 
         it 'has timezone' do
           request
-          expect(json['data'].count).to eq 1
+          expect(json['timezones'].count).to eq 1
         end
       end
     end

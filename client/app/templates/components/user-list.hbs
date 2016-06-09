@@ -10,6 +10,8 @@
         <td>{{user.email}}</td>
         <td>{{user.role}}</td>
         <td>
+          {{#link-to 'users.edit' user}}Edit{{/link-to}}
+          <a href="#" {{action 'delete' user}}>Delete</a>
         </td>
       </tr>
     {{/each}}
