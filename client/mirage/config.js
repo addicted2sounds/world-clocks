@@ -16,6 +16,15 @@ export default function() {
     }
   });
 
+  this.get('/users', ({ users }, request) => {
+    const token = Ember.get(request, 'requestHeaders.Authorization');
+    if (token == 'Bearer cola') {
+      return users.all();
+    } else {
+      return new Mirage.Response(401, {}, {});
+    }
+  });
+
   this.get('/timezones', ({ timezones }, request) => {
     const token = Ember.get(request, 'requestHeaders.Authorization');
     if (token == 'Bearer cola') {
@@ -24,4 +33,5 @@ export default function() {
       return new Mirage.Response(401, {}, {});
     }
   });
+  this.post('/users');
 }
