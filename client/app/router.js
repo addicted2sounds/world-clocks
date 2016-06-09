@@ -13,6 +13,7 @@ Router.map(function() {
     this.route('timezone', {
       path: ':timezone_id'
     });
+    this.route('edit', { path: ':timezone_id/edit' });
   });
 });
 

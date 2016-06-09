@@ -11,6 +11,8 @@
         <td>{{timezone.city}}</td>
         <td>
           {{#link-to 'timezones.timezone' timezone}}Show{{/link-to}}
+          {{#link-to 'timezones.edit' timezone}}Edit{{/link-to}}
+          {{#link-to action 'timezones.edit' timezone}}Delete{{/link-to}}
         </td>
       </tr>
     {{/each}}
