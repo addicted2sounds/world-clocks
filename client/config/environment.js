@@ -24,8 +24,9 @@ module.exports = function(environment) {
   };
 
   ENV['ember-simple-auth'] = {
-    routeAfterAuthentication: '/',
-    authenticationRoute: '/'
+    routeAfterAuthentication: '/timezones',
+    authenticationRoute: '/',
+    routeIfAlreadyAuthenticated: '/timezones'
   };
 
   if (environment === 'development') {
