@@ -41,7 +41,7 @@ export default Base.extend({
         const { jwt } =  response;
         run(() => {
           resolve({
-            token: jwt
+            token: jwt,
           });
         });
       }, (error) => {

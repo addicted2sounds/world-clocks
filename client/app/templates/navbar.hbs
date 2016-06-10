@@ -1,3 +1,4 @@
+{{log session.currentUser}}
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -7,13 +8,21 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      {{#link-to 'index' class="navbar-brand"}}Timezones{{/link-to}}
+      {{#link-to 'timezones' class="navbar-brand"}}Timezones{{/link-to}}
     </div>
 
     <div class="collapse navbar-collapse" id="main-navbar">
       <ul class="nav navbar-nav">
         {{#link-to 'timezones.new' tagName="li"}}<a href="">Add timezone</a>{{/link-to}}
+        {{#if session.currentUser.isAdmin}}
+          {{#link-to 'users' tagName="li"}}<a href="">Users</a>{{/link-to}}
+        {{/if}}
       </ul>
+      {{#if session.isAuthenticated}}
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/logout" {{action 'invalidateSession'}}>Logout {{session.currentUser.email}}</a></li>
+        </ul>
+      {{/if}}
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

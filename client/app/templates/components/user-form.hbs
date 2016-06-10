@@ -1,0 +1,23 @@
+<div class="well col-sm-4 col-sm-offset-4">
+  <form {{action 'save' user on="submit"}}>
+    <div class="form-group">
+      <label for="name">Name</label>
+      {{input id="email" value=user.email class="form-control"}}
+      {{#each user.errors.email as |error|}}
+        <div class="error">
+          {{error.message}}
+        </div>
+      {{/each}}
+    </div>
+    <div class="form-group">
+      <label for="name">Name</label>
+      {{input type="password" id="password" value=user.password class="form-control"}}
+      {{#each user.errors.password as |error|}}
+        <div class="error">
+          {{error.message}}
+        </div>
+      {{/each}}
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </form>
+</div>

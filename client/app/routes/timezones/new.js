@@ -4,4 +4,12 @@ export default Ember.Route.extend({
   model() {
     return this.store.createRecord('timezone');
   },
+  actions: {
+    willTransition() {
+      let timezone = this.controller.get('model');
+      if (timezone.get('isNew')) {
+        timezone.destroyRecord();
+      }
+    }
+  }
 });

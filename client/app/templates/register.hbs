@@ -1,0 +1,25 @@
+<div class="well col-sm-4 col-sm-offset-4">
+  <h1>Sign up</h1>
+  <form {{action 'register' on="submit"}}>
+    <div class="form-group">
+      <label for="email">Email</label>
+      {{input id="email" value=model.email class="form-control"}}
+      {{#each model.errors.name as |error|}}
+        <div class="error">
+          {{error.message}}
+        </div>
+      {{/each}}
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      {{input id="password" type="password" value=model.password class="form-control"}}
+      {{#each model.errors.password as |error|}}
+        <div class="error">
+          {{error.message}}
+        </div>
+      {{/each}}
+    </div>
+    <button type="submit" class="btn btn-primary">Sign up</button>
+    <p>{{#link-to 'index'}}Login{{/link-to}}</p>
+  </form>
+</div>

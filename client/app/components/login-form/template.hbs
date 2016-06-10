@@ -1,28 +1,20 @@
-{{#unless session.isAuthenticated}}
-  <div id="loginForm">
+<div id="loginForm" class="form form-inline">
+  <h4>Login</h4>
+  <form {{action 'login' on="submit"}}>
     {{#if loginError}}
       <div class="login-err alert alert-error">Bad deets dude.</div>
     {{/if}}
-
-    {{input
-      value=identification
-      placeholder="identification"
-      class="username-field"}}
-    {{input
-      type="password"
-      placeholder="password"
-      value=password
-      class="password-field"}}
-    <a href="/login"
-       class="login-btn btn btn-primary"
-       {{action "login"}}>
+    <div class="form-group">
+      {{input value=identification id="email"
+        placeholder="email" class="form-control"}}
+    </div>
+    <div class="form-group">
+      {{input type="password" id="password" placeholder="password" 
+        value=password class="form-control"}}
+    </div>
+    <button type="submit" class="btn btn-primary">
       Login
-    </a>
-  </div>
-{{ else }}
-  <a href="/logout"
-     class="logoutBtn"
-     {{action "signout"}}>
-    logout
-  </a>
-{{/unless}}
+    </button>
+  </form>
+  <p>{{#link-to 'register'}}Sign up{{/link-to}}</p>
+</div>
