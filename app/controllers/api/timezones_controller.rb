@@ -33,7 +33,7 @@ module Api
       if @timezone.update_attributes(permitted_attributes(@timezone))
         render json: @timezone
       else
-        render json: @timezone.errors, status: :unprocessable_entity
+        respond_with_errors @timezone
       end
     end
 

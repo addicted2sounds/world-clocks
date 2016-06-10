@@ -30,7 +30,7 @@ module Api
         render json: @user, status: :created,
                location: api_user_path(@user)
       else
-        render json: @user.errors, status: :unprocessable_entity
+        respond_with_errors @user
       end
     end
 
@@ -42,7 +42,7 @@ module Api
       if @user.update(attrs)
         render json: @user
       else
-        render json: @user.errors, status: :unprocessable_entity
+        respond_with_errors @user
       end
     end
 
