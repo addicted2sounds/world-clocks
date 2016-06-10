@@ -7,7 +7,9 @@ export default Ember.Route.extend({
   actions: {
     willTransition() {
       let timezone = this.controller.get('model');
-      if (timezone.get('isNew')) timezone.destroyRecord();
+      if (timezone.get('isNew')) {
+        timezone.destroyRecord();
+      }
     }
   }
 });
