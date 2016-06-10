@@ -1,4 +1,6 @@
-{{partial 'navbar'}}
+{{#if session.isAuthenticated}}
+  {{partial 'navbar'}}
+{{/if}}
 <div class="container-fluid">
   {{outlet}}
 </div>

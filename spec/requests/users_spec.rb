@@ -35,6 +35,19 @@ RSpec.describe 'Users', :type => :request do
 
   end
 
+  describe 'GET /users/current' do
+    let(:req) { get current_api_users_url, headers: auth_headers(user) }
+    it 'is rejected without authentication' do
+      get current_api_users_url
+      expect(response).to have_http_status 401
+    end
+
+    it 'render current user' do
+      req
+      expect(json.count).to eq 1
+    end
+  end
+
   describe 'POST /api/users' do
     context 'when valid attributes' do
       let(:request) { post api_users_path, params: { user: valid_attributes } }
@@ -83,6 +96,11 @@ RSpec.describe 'Users', :type => :request do
 
     let(:request) do
       delete api_user_path(user), headers: auth_headers(user)
+    end
+
+    it 'is rejected without authentication' do
+      delete api_user_path(user)
+      expect(response).to have_http_status(401);
     end
 
     it 'removes record' do

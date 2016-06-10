@@ -10,6 +10,11 @@ module Api
       render json: @users
     end
 
+    def current
+      skip_authorization
+      render json: current_user
+    end
+
     # GET /users/1
     def show
       authorize @user
