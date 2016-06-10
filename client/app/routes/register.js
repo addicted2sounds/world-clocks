@@ -8,7 +8,7 @@ export default Ember.Route.extend({
     register() {
       let user = this.controller.get('model');
       user.save().then(() => {
-        console.log('registered');
+        transitionTo('/');
       }, (err) => {
         console.log('failed');
       });

@@ -2,6 +2,9 @@
   <thead>
     <th>Name</th>
     <th>City</th>
+    {{#if session.currentUser.isManager}}
+      <th>User</th>
+    {{/if}}
     <th></th>
   </thead>
   <tbody>
@@ -9,6 +12,9 @@
       <tr>
         <td>{{timezone.name}}</td>
         <td>{{timezone.city}}</td>
+        {{#if session.currentUser.isManager}}
+          <td>user{{timezone.user.email}}</td>
+        {{/if}}
         <td>
           {{#link-to 'timezones.timezone' timezone}}Show{{/link-to}}
           {{#link-to 'timezones.edit' timezone}}Edit{{/link-to}}

@@ -1,4 +1,3 @@
 class TimezoneSerializer < ActiveModel::Serializer
-  attributes :id, :name, :city, :difference
-  has_one :user
+  attributes :id, :name, :city, :difference, :user_id
 end
