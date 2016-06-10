@@ -23,6 +23,7 @@ Router.map(function() {
     });
     this.route('edit', { path: ':user_id/edit' });
   });
+  this.route('register');
 });
 
 export default Router;
