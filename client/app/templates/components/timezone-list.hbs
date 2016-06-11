@@ -1,0 +1,32 @@
+<table class="table">
+  <thead>
+    <th>Name</th>
+    <th>City</th>
+    {{#if session.currentUser.isManager}}
+      <th>User</th>
+    {{/if}}
+    <th></th>
+  </thead>
+  <tbody>
+    {{#each timezones as |timezone|}}
+      <tr>
+        <td>{{timezone.name}}</td>
+        <td>{{timezone.city}}</td>
+        {{#if session.currentUser.isManager}}
+          <td>user{{timezone.user.email}}</td>
+        {{/if}}
+        <td class="actions">
+          {{#link-to 'timezones.timezone' timezone}}
+            <span class="glyphicon glyphicon-eye-open"></span>
+          {{/link-to}}
+          {{#link-to 'timezones.edit' timezone}}
+            <span class="glyphicon glyphicon-pencil"></span>
+          {{/link-to}}
+          <a href="#" {{action 'delete' timezone}}>
+            <span class="glyphicon glyphicon-trash"></span>
+          </a>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

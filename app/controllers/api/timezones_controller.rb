@@ -16,23 +16,23 @@ module Api
 
     # POST /timezones
     def create
-      @timezone = Timezone.new permitted_attributes(Timezone)
-      @timezone.user = current_user if current_user.user?
+      @timezone = Timezone.new permitted_params(Timezone)
+      @timezone.user = current_user
       authorize(@timezone)
       if @timezone.save
         render json: @timezone, status: :created,
                location: api_timezone_path(@timezone)
       else
-        render json: @timezone.errors, status: :unprocessable_entity
+        respond_with_errors @timezone
       end
     end
 
     # PATCH/PUT /timezones/1
     def update
-      if @timezone.update_attributes(permitted_attributes @timezone)
+      if @timezone.update_attributes(permitted_params(@timezone))
         render json: @timezone
       else
-        render json: @timezone.errors, status: :unprocessable_entity
+        respond_with_errors @timezone
       end
     end
 
@@ -42,6 +42,7 @@ module Api
     end
 
     private
+
       def set_timezone
         @timezone = Timezone.find(params[:id])
         authorize(@timezone)

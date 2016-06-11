@@ -1,0 +1,33 @@
+<div class="well col-sm-4 col-sm-offset-4">
+<form class="form" {{action 'save' timezone on="submit"}}>
+  <div class="form-group">
+    <label for="name">Name</label>
+    {{input id="name" value=timezone.name class="form-control"}}
+    {{log model.errors}}
+    {{#each timezone.errors.name as |error|}}
+      <div class="error">
+        {{error.message}}
+      </div>
+    {{/each}}
+  </div>
+  <div class="form-group">
+    <label for="city">City</label>
+    {{input id="city" value=timezone.city class="form-control"}}
+    {{#each timezone.errors.city as |error|}}
+      <div class="error">
+        {{error.message}}
+      </div>
+    {{/each}}
+  </div>
+  <div class="form-group">
+    <label for="difference">Time lapse (GMT)</label>
+    {{input id="difference" value=timezone.difference type="number" min="-12" max="12" class="form-control"}}
+    {{#each timezone.errors.difference as |error|}}
+      <div class="error">
+        {{error.message}}
+      </div>
+    {{/each}}
+  </div>
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>
+</div>

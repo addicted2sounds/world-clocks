@@ -1,0 +1,27 @@
+<table class="table">
+  <thead>
+    <th>Email</th>
+    <th>Role</th>
+    <th></th>
+  </thead>
+  {{log users}}
+  <tbody>
+    {{#each users as |user|}}
+      <tr>
+        <td>{{user.email}}</td>
+        <td>{{user.role}}</td>
+        <td class="actions">
+          {{#link-to 'users.user' user}}
+            <span class="glyphicon glyphicon-eye-open"></span>
+          {{/link-to}}
+          {{#link-to 'users.edit' user}}
+            <span class="glyphicon glyphicon-pencil"></span>
+          {{/link-to}}
+          <a href="#" {{action 'delete' user}}>
+            <span class="glyphicon glyphicon-trash"></span>
+          </a>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

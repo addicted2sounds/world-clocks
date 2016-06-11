@@ -25,9 +25,26 @@ RSpec.describe 'Users', :type => :request do
 
         it 'returns list of users' do
           request
-          expect(json['data'].count).to eq 1
+          expect(json['users'].count).to eq 1
         end
       end
+    end
+  end
+
+  describe 'GET /users/:id' do
+
+  end
+
+  describe 'GET /users/current' do
+    let(:req) { get current_api_users_url, headers: auth_headers(user) }
+    it 'is rejected without authentication' do
+      get current_api_users_url
+      expect(response).to have_http_status 401
+    end
+
+    it 'render current user' do
+      req
+      expect(json.count).to eq 1
     end
   end
 
@@ -79,6 +96,11 @@ RSpec.describe 'Users', :type => :request do
 
     let(:request) do
       delete api_user_path(user), headers: auth_headers(user)
+    end
+
+    it 'is rejected without authentication' do
+      delete api_user_path(user)
+      expect(response).to have_http_status(401);
     end
 
     it 'removes record' do

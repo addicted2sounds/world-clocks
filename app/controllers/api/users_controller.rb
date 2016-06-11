@@ -10,8 +10,14 @@ module Api
       render json: @users
     end
 
+    def current
+      skip_authorization
+      render json: current_user
+    end
+
     # GET /users/1
     def show
+      authorize @user
       render json: @user
     end
 
@@ -24,17 +30,19 @@ module Api
         render json: @user, status: :created,
                location: api_user_path(@user)
       else
-        render json: @user.errors, status: :unprocessable_entity
+        respond_with_errors @user
       end
     end
 
     # PATCH/PUT /users/1
     def update
       authorize @user
-      if @user.update(permitted_attributes User)
+      attrs = permitted_params @user
+      attrs.delete('password') if attrs['password'].nil?
+      if @user.update(attrs)
         render json: @user
       else
-        render json: @user.errors, status: :unprocessable_entity
+        respond_with_errors @user
       end
     end
 

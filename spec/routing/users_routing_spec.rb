@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Api::UsersController, :type => :routing do
   describe 'routing' do
+    it 'routes to #current' do
+      expect(get: '/api/users/current').to route_to 'api/users#current'
+    end
 
     it 'routes to #index' do
       expect(:get => '/api/users').to route_to('api/users#index')

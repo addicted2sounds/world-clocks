@@ -5,7 +5,7 @@ module Requests
     end
 
     def auth_headers(user)
-      token = Knock::AuthToken.new(payload: { email: user.email }).token
+      token = Knock::AuthToken.new(payload: { sub: user.id }).token
       { HTTP_AUTHORIZATION: "Bearer #{token}" }
     end
   end
