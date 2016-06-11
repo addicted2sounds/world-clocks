@@ -18,7 +18,7 @@ RSpec.describe 'Timezones', :type => :request do
       context 'when no timezones defined' do
         it 'returns empty array' do
           request
-          expect(json['timezones']).to eq []
+          expect(data).to eq []
         end
       end
 
@@ -27,7 +27,7 @@ RSpec.describe 'Timezones', :type => :request do
 
         it 'has timezone' do
           request
-          expect(json['timezones'].count).to eq 1
+          expect(data.count).to eq 1
         end
       end
     end
@@ -41,7 +41,8 @@ RSpec.describe 'Timezones', :type => :request do
 
     context 'when authenticated' do
       let(:request) do
-        post '/api/timezones', params: { timezone: valid_attributes },
+        post '/api/timezones',
+             params: { data: { attributes: valid_attributes } },
              headers: auth_headers(user)
       end
 
@@ -53,7 +54,8 @@ RSpec.describe 'Timezones', :type => :request do
 
       context 'with invalid attributes' do
         let(:request) do
-          post '/api/timezones', params: { timezone: invalid_attributes },
+          post '/api/timezones',
+               params: { data: { attributes: invalid_attributes }},
                headers: auth_headers(user)
         end
 
@@ -76,7 +78,7 @@ RSpec.describe 'Timezones', :type => :request do
       context 'with valid attributes' do
         let(:request) do
           patch api_timezone_path(timezone),
-                params: { timezone: valid_attributes },
+                params: { data: { attributes: valid_attributes }},
                 headers: auth_headers(user)
         end
 
@@ -88,7 +90,8 @@ RSpec.describe 'Timezones', :type => :request do
 
       context 'with invalid attributes' do
         let(:request) do
-          post '/api/timezones', params: { timezone: invalid_attributes },
+          post '/api/timezones',
+               params: { data: { attributes: invalid_attributes }},
                headers: auth_headers(user)
         end
 
