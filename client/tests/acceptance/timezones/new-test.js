@@ -31,13 +31,13 @@ test('creates new timezone', function(assert) {
   authenticateSession(this.application);
   visit('/timezones/new');
   andThen(function() {
-    fillIn('.timezone-name', 'test');
-    fillIn('.timezone-city', 'test');
-    fillIn('.timezone-difference', '-5');
+    fillIn('#name', 'test');
+    fillIn('#city', 'test');
+    fillIn('#difference', '-5');
     click('button');
-  });
-  andThen(function() {
-    assert.equal(currentURL(), '/timezones/1');
+    andThen(function() {
+      assert.equal(currentURL(), '/timezones/1');
+    });
   });
 });
 
