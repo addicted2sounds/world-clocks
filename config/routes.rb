@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   namespace :api do
     resources :timezones
+    get '/users' => 'users#current',
+        constraints: { query_string: /current=1/ }
     resources :users do
       get 'current', on: :collection
     end
