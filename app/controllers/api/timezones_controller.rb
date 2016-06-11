@@ -17,8 +17,7 @@ module Api
     # POST /timezones
     def create
       @timezone = Timezone.new permitted_params(Timezone)
-      # @timezone = Timezone.new permitted_attributes(Timezone)
-      @timezone.user = current_user if current_user.user?
+      @timezone.user = current_user
       authorize(@timezone)
       if @timezone.save
         render json: @timezone, status: :created,
@@ -30,7 +29,7 @@ module Api
 
     # PATCH/PUT /timezones/1
     def update
-      if @timezone.update_attributes(permitted_attributes(@timezone))
+      if @timezone.update_attributes(permitted_params(@timezone))
         render json: @timezone
       else
         respond_with_errors @timezone

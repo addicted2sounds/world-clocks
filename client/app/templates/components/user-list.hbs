@@ -10,10 +10,16 @@
       <tr>
         <td>{{user.email}}</td>
         <td>{{user.role}}</td>
-        <td>
-          {{#link-to 'users.user' user}}Show{{/link-to}}
-          {{#link-to 'users.edit' user}}Edit{{/link-to}}
-          <a href="#" {{action 'delete' user}}>Delete</a>
+        <td class="actions">
+          {{#link-to 'users.user' user}}
+            <span class="glyphicon glyphicon-eye-open"></span>
+          {{/link-to}}
+          {{#link-to 'users.edit' user}}
+            <span class="glyphicon glyphicon-pencil"></span>
+          {{/link-to}}
+          <a href="#" {{action 'delete' user}}>
+            <span class="glyphicon glyphicon-trash"></span>
+          </a>
         </td>
       </tr>
     {{/each}}
