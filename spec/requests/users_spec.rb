@@ -25,7 +25,7 @@ RSpec.describe 'Users', :type => :request do
 
         it 'returns list of users' do
           request
-          expect(json['users'].count).to eq 1
+          expect(data.count).to eq 1
         end
       end
     end
@@ -44,7 +44,7 @@ RSpec.describe 'Users', :type => :request do
 
     it 'render current user' do
       req
-      expect(json.count).to eq 1
+      expect(data).to be_a Hash
     end
   end
 
@@ -68,7 +68,8 @@ RSpec.describe 'Users', :type => :request do
   describe 'PATCH /users/:id' do
     context 'when valid attributes' do
       let(:request) do
-        patch api_user_path(user), params: { user: valid_attributes },
+        patch api_user_path(user),
+              params: { data: { attributes: valid_attributes }},
               headers: auth_headers(user)
       end
 
@@ -80,7 +81,8 @@ RSpec.describe 'Users', :type => :request do
 
     context 'when invalid attributes' do
       let(:request) do
-        patch api_user_path(user), params: { user: invalid_attributes },
+        patch api_user_path(user),
+              params: { data: { attributes: invalid_attributes }},
               headers: auth_headers(user)
       end
 
