@@ -25,6 +25,36 @@ export default function() {
     const user = db.users.create(attrs);
     return new Mirage.Response(201, {}, user);
   });
+  this.get('/users/:id', ({ users }, request) => {
+    const id = request.params.id;
+    const token = Ember.get(request, 'requestHeaders.Authorization');
+    if (token == 'Bearer cola') {
+      return users.find(id);
+    } else {
+      return new Mirage.Response(401, {}, {});
+    }
+  });
+  this.patch('/users/:id', ({ users }, request) => {
+    const id = request.params.id;
+    const token = Ember.get(request, 'requestHeaders.Authorization');
+    if (token == 'Bearer cola') {
+      const user = users.find(id);
+      const attrs = JSON.parse(request.requestBody).data.attributes;
+      return user.update(attrs);
+    } else {
+      return new Mirage.Response(401, {}, {});
+    }
+  });
+  this.delete('users/:id', ({ users }, request) => {
+    const id = request.params.id;
+    const token = Ember.get(request, 'requestHeaders.Authorization');
+    if (token == 'Bearer cola') {
+      const user = users.find(id);
+      return user.destroy();
+    } else {
+      return new Mirage.Response(401, {}, {});
+    }
+  });
   this.get('/timezones', ({ timezones }, request) => {
     const token = Ember.get(request, 'requestHeaders.Authorization');
     if (token == 'Bearer cola') {

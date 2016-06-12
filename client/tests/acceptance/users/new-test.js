@@ -2,7 +2,8 @@ import { test } from 'qunit';
 import moduleForAcceptance from 'world-times/tests/helpers/module-for-acceptance';
 
 import {
-  authenticateSession
+  authenticateSession,
+  invalidateSession
 } from 'world-times/tests/helpers/ember-simple-auth';
 
 moduleForAcceptance('Acceptance | users/new');
@@ -19,5 +20,13 @@ test('creates new user', function(assert) {
 
   andThen(function() {
     assert.equal(currentURL(), '/users/1');
+  });
+});
+
+test ('redirect to login if not signed in', function(assert) {
+  invalidateSession(this.application);
+  visit('/users/new');
+  andThen(function() {
+    assert.equal(currentURL(), '/');
   });
 });
