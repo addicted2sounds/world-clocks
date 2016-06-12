@@ -53,10 +53,7 @@ export default function() {
     if (token == 'Bearer cola') {
       const timezone = timezones.find(id);
       const attrs = JSON.parse(request.requestBody).data.attributes;
-      timezones.update(id, attrs);
-      //timezone.attrs = attrs;
-      //console.log(timezone);
-      return timezone;
+      return timezone.update(attrs);
     } else {
       return new Mirage.Response(401, {}, {});
     }

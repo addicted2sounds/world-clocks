@@ -2,8 +2,7 @@ import { test } from 'qunit';
 import moduleForAcceptance from 'world-times/tests/helpers/module-for-acceptance';
 
 import {
-  currentSession,
-  invalidateSession ,
+  invalidateSession,
   authenticateSession
 } from 'world-times/tests/helpers/ember-simple-auth';
 
@@ -11,7 +10,7 @@ moduleForAcceptance('Acceptance | timezones/update');
 
 test('visiting /timezone/:id/edit', function(assert) {
   authenticateSession(this.application);
-  const timezone = server.create('timezone')
+  const timezone = server.create('timezone');
   visit(`/timezones/${timezone.id}/edit`);
 
   andThen(function() {
@@ -21,7 +20,6 @@ test('visiting /timezone/:id/edit', function(assert) {
 
 test('redirects to / when not authenticated', function(assert) {
   invalidateSession(this.application);
-  const timezone = server.create('timezone')
   visit('/timezones/1/edit');
 
   andThen(function() {
@@ -31,7 +29,7 @@ test('redirects to / when not authenticated', function(assert) {
 
 test('updating record', function(assert) {
   authenticateSession(this.application);
-  const timezone = server.create('timezone')
+  const timezone = server.create('timezone');
   visit(`/timezones/${timezone.id}/edit`);
   andThen(function() {
     fillIn('#name', 'test');
