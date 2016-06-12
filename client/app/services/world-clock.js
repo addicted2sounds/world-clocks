@@ -7,6 +7,6 @@ export default Clock.extend({
   timezoneTime() {
     const timenow = this.get('clock.date');
     this.timeDiff = (new Date()).getTimezoneOffset() * 60000;
-    return new Date(timenow + timeDiff + difference * 60000);
+    return new Date(timenow + this.timeDiff + this.difference * 60000);
   }
 });

@@ -9,14 +9,14 @@ export default Ember.Route.extend(UnauthenticatedRouteMixin, {
     register() {
       let user = this.controller.get('model');
       user.save().then(() => {
-        transitionTo('/');
+        this.transitionTo('/');
       }, (err) => {
-        console.log('failed');
+        console.log(`Registration failed: ${err}`);
       });
     },
     willTransition() {
       let user = this.controller.get('model');
-      if (user.get('isNew')) user.destroyRecord();
+      if (user.get('isNew')) { user.destroyRecord(); }
     }
   }
 });

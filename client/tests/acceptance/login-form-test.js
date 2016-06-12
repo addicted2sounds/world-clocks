@@ -10,6 +10,7 @@ import {
 
 moduleForAcceptance('Acceptance | login form');
 
+
 test('If a user is not logged in, they see a login form', function(assert) {
   invalidateSession(this.application);
   visit('/');
@@ -20,24 +21,17 @@ test('If a user is not logged in, they see a login form', function(assert) {
   });
 });
 
-test('if a user is logged in, they see a logout form', function(assert) {
+test('if a user is logged in, they see a logout button', function(assert) {
   authenticateSession(this.application);
   visit('/');
 
   andThen(function() {
-    assert.equal(currentURL(), '/');
-    const logoutBtnPresent = this.$('.logoutBtn').length > 0 ? true : false;
+    assert.equal(currentURL(), '/timezones');
+    const logoutBtnPresent = this.$('.btn-logout').length > 0 ? true : false;
     assert.equal(
       logoutBtnPresent,
       true,
       'An authed user should see the logout button'
-    );
-
-    const loginFormPresent = find('#loginForm').length > 0 ? true : false;
-    assert.equal(
-      loginFormPresent,
-      false,
-      'An authed user not should see the login form'
     );
   });
 });
@@ -45,7 +39,7 @@ test('if a user is logged in, they see a logout form', function(assert) {
 test('user can logout', function(assert) {
   authenticateSession(this.application);
   visit('/');
-  click('.logoutBtn');
+  click('.btn-logout');
 
   andThen(() => {
     const sesh = currentSession(this.application);
@@ -63,9 +57,9 @@ test('user can login', function(assert) {
   invalidateSession(this.application);
   visit('/');
 
-  fillIn('.username-field', 'lester@test.com');
-  fillIn('.password-field', '123qwe');
-  click('.login-btn');
+  fillIn('#email', 'lester@test.com');
+  fillIn('#password', '123qwe');
+  click('button');
 
   andThen(() => {
     const sesh = currentSession(this.application);
@@ -89,9 +83,9 @@ test('If a user puts in the wrong login credentials, they see a login error', fu
   invalidateSession(this.application);
   visit('/');
 
-  fillIn('.username-field', 'lester@test.com');
-  fillIn('.password-field', 'wrongPassword');
-  click('.login-btn');
+  fillIn('#email', 'lester@test.com');
+  fillIn('#password', 'wrongPassword');
+  click('button');
 
   andThen(() => {
     const sesh = currentSession(this.application);

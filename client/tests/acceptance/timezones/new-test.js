@@ -2,12 +2,11 @@ import { test } from 'qunit';
 import moduleForAcceptance from 'world-times/tests/helpers/module-for-acceptance';
 
 import {
-  currentSession,
-  invalidateSession ,
+  invalidateSession,
   authenticateSession
 } from 'world-times/tests/helpers/ember-simple-auth';
 
-moduleForAcceptance('Acceptance | create timezone');
+moduleForAcceptance('Acceptance | timezones/new');
 
 test('visiting /timezones/new', function(assert) {
   authenticateSession(this.application);
@@ -31,13 +30,13 @@ test('creates new timezone', function(assert) {
   authenticateSession(this.application);
   visit('/timezones/new');
   andThen(function() {
-    fillIn('.timezone-name', 'test');
-    fillIn('.timezone-city', 'test');
-    fillIn('.timezone-difference', '-5');
-    click('button');
-  });
-  andThen(function() {
-    assert.equal(currentURL(), '/timezones/1');
+    fillIn('#name', 'test');
+    fillIn('#city', 'test');
+    fillIn('#difference', '-5');
+    click('button[type="submit"]');
+    andThen(function() {
+      assert.equal(currentURL(), '/timezones/1');
+    });
   });
 });
 

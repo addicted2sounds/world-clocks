@@ -20,7 +20,7 @@
       </ul>
       {{#if session.isAuthenticated}}
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="/logout" {{action 'invalidateSession'}}>Logout {{session.currentUser.email}}</a></li>
+          <li><a href="/logout" class="btn-logout" {{action 'invalidateSession'}}>Logout {{session.currentUser.email}}</a></li>
         </ul>
       {{/if}}
     </div><!-- /.navbar-collapse -->

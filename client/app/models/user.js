@@ -9,9 +9,9 @@ export default Model.extend({
   role: attr('string'),
   timezones: hasMany('user'),
   isAdmin: Ember.computed('role', function() {
-    return this.get('role') == 'admin';
+    return this.get('role') === 'admin';
   }),
   isManager: Ember.computed('role', function() {
-    return this.get('isAdmin') || this.get('role') == 'manager';
+    return this.get('isAdmin') || this.get('role') === 'manager';
   })
 });
