@@ -38,4 +38,28 @@ export default function() {
     const timezone = db.users.create(attrs);
     return new Mirage.Response(201, {}, timezone);
   });
+  this.get('/timezones/:id', ({ timezones }, request) => {
+    const id = request.params.id;
+    const token = Ember.get(request, 'requestHeaders.Authorization');
+    if (token == 'Bearer cola') {
+      return timezones.find(id);
+    } else {
+      return new Mirage.Response(401, {}, {});
+    }
+  });
+  this.patch('/timezones/:id', ({ timezones }, request) => {
+    const id = request.params.id;
+    const token = Ember.get(request, 'requestHeaders.Authorization');
+    if (token == 'Bearer cola') {
+      const timezone = timezones.find(id);
+      const attrs = JSON.parse(request.requestBody).data.attributes;
+      timezones.update(id, attrs);
+      //timezone.attrs = attrs;
+      //console.log(timezone);
+      return timezone;
+    } else {
+      return new Mirage.Response(401, {}, {});
+    }
+  });
+
 }

@@ -9,28 +9,37 @@ import {
 
 moduleForAcceptance('Acceptance | timezones/update');
 
-test('update record from list', function(assert) {
+test('visiting /timezone/:id/edit', function(assert) {
   authenticateSession(this.application);
-  this.server.createRecord
-  visit('/timezones/1');
+  const timezone = server.create('timezone')
+  visit(`/timezones/${timezone.id}/edit`);
 
   andThen(function() {
-    assert.equal(currentURL(), '/timezones/new');
+    assert.equal(currentURL(), `/timezones/${timezone.id}/edit`);
   });
 });
 
-//test('redirects to / when not authenticated', function(assert) {
-  //invalidateSession(this.application);
-  //visit('/timezones/new');
+test('redirects to / when not authenticated', function(assert) {
+  invalidateSession(this.application);
+  const timezone = server.create('timezone')
+  visit('/timezones/1/edit');
 
-  //andThen(function() {
-    //assert.equal(currentURL(), '/');
-  //});
-//});
-//test('visiting /timezones/update', function(assert) {
-  //visit('/timezones/update');
+  andThen(function() {
+    assert.equal(currentURL(), '/');
+  });
+});
 
-  //andThen(function() {
-    //assert.equal(currentURL(), '/timezones/update');
-  //});
-//});
+test('updating record', function(assert) {
+  authenticateSession(this.application);
+  const timezone = server.create('timezone')
+  visit(`/timezones/${timezone.id}/edit`);
+  andThen(function() {
+    fillIn('#name', 'test');
+    fillIn('#city', 'test');
+    fillIn('#difference', '-5');
+    click('button[type="submit"]');
+    andThen(function() {
+      assert.equal(currentURL(), '/timezones/1');
+    });
+  });
+});
