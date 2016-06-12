@@ -7,7 +7,7 @@ import {
   authenticateSession
 } from 'world-times/tests/helpers/ember-simple-auth';
 
-moduleForAcceptance('Acceptance | create timezone');
+moduleForAcceptance('Acceptance | timezones/new');
 
 test('visiting /timezones/new', function(assert) {
   authenticateSession(this.application);
@@ -34,7 +34,7 @@ test('creates new timezone', function(assert) {
     fillIn('#name', 'test');
     fillIn('#city', 'test');
     fillIn('#difference', '-5');
-    click('button');
+    click('button[type="submit"]');
     andThen(function() {
       assert.equal(currentURL(), '/timezones/1');
     });

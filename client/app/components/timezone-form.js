@@ -4,6 +4,7 @@ export default Ember.Component.extend({
   session: Ember.inject.service(),
   actions: {
     save(timezone) {
+      console.log('save');
       timezone.save().then(() => {
         this.sendAction('action', this.get('timezone'));
       }).catch((err) => {
