@@ -2,8 +2,6 @@ import { test } from 'qunit';
 import moduleForAcceptance from 'world-times/tests/helpers/module-for-acceptance';
 
 import {
-  currentSession,
-  invalidateSession ,
   authenticateSession
 } from 'world-times/tests/helpers/ember-simple-auth';
 
