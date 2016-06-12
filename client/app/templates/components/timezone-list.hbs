@@ -17,13 +17,13 @@
         {{/if}}
         <td class="actions">
           {{#link-to 'timezones.timezone' timezone}}
-            <span class="glyphicon glyphicon-eye-open"></span>
+            <span class="glyphicon glyphicon-eye-open view"></span>
           {{/link-to}}
           {{#link-to 'timezones.edit' timezone}}
-            <span class="glyphicon glyphicon-pencil"></span>
+            <span class="glyphicon glyphicon-pencil edit"></span>
           {{/link-to}}
           <a href="#" {{action 'delete' timezone}}>
-            <span class="glyphicon glyphicon-trash"></span>
+            <span class="glyphicon glyphicon-trash delete"></span>
           </a>
         </td>
       </tr>

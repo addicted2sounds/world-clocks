@@ -58,5 +58,14 @@ export default function() {
       return new Mirage.Response(401, {}, {});
     }
   });
-
+  this.delete('timezones/:id', ({ timezones }, request) => {
+    const id = request.params.id;
+    const token = Ember.get(request, 'requestHeaders.Authorization');
+    if (token == 'Bearer cola') {
+      const timezone = timezones.find(id);
+      return timezone.destroy();
+    } else {
+      return new Mirage.Response(401, {}, {});
+    }
+  });
 }
