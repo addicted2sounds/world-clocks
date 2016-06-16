@@ -3,8 +3,8 @@ notification :terminal_notifier if `uname` =~ /Darwin/
 # More info at https://github.com/guard/guard#readme
 
 ## Uncomment and set this to only include directories you want to watch
-# directories %w(app lib config test spec features) \
-#  .select{|d| Dir.exists?(d) ? d : UI.warning("Directory #{d} does not exist")}
+directories %w(app lib config spec public) \
+  .select{|d| Dir.exists?(d) ? d : UI.warning("Directory #{d} does not exist")}
 
 ## Note: if you are using the `directories` clause above and you are not
 ## watching the project directory ('.'), then you will want to move
@@ -32,10 +32,10 @@ notification :terminal_notifier if `uname` =~ /Darwin/
 # zeus: false                          # enables zeus gem.
 # CLI: 'rails server'                  # customizes runner command. Omits all options except `pid_file`!
 
-guard 'rails' do
-  watch('Gemfile.lock')
-  watch(%r{^(config|lib)/.*})
-end
+#guard 'rails' do
+  #watch('Gemfile.lock')
+  #watch(%r{^(config|lib)/.*})
+#end
 
 # Note: The cmd option is now required due to the increasing number of ways
 #       rspec may be run, below are examples of the most common uses.

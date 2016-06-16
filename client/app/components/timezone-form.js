@@ -6,8 +6,6 @@ export default Ember.Component.extend({
     save(timezone) {
       timezone.save().then(() => {
         this.sendAction('action', this.get('timezone'));
-      }).catch((err) => {
-        console.log(err);
       });
     }
   }

@@ -5,8 +5,6 @@ export default Ember.Component.extend({
     save(user) {
       user.save().then(() => {
         this.sendAction('action', user);
-      }).catch((err) => {
-        console.log(err);
       });
     }
   }

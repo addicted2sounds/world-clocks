@@ -10,13 +10,21 @@
       {{/each}}
     </div>
     <div class="form-group">
-      <label for="name">Name</label>
+      <label for="name">Password</label>
       {{input type="password" id="password" value=user.password class="form-control"}}
       {{#each user.errors.password as |error|}}
         <div class="error">
           {{error.message}}
         </div>
       {{/each}}
+    </div>
+    <div class="form-group">
+      <label for="role">Role</label>
+      {{#x-select value=user.role class="form-control"}}
+        {{#x-option value="user"}}User{{/x-option}}
+        {{#x-option value="manager"}}Manager{{/x-option}}
+        {{#x-option value="admin"}}Admin{{/x-option}}
+      {{/x-select}}
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
   </form>

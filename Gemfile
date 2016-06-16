@@ -31,7 +31,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'guard-rspec'
   gem 'guard-rails', require: false
-  gem 'guard-livereload'
+  gem 'guard-livereload', require: false
   gem 'terminal-notifier-guard'
 end
 
