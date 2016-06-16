@@ -1,3 +1,1 @@
-web: RACK_ENV=production bundle exec rails s -p3000
-client: sh -c "cd client && ember s -p 4200"
-
+web: sh -c "cd client && ember build --environment=production" && RACK_ENV=production bundle exec rails s
