@@ -8,5 +8,5 @@ Rails.application.routes.draw do
     end
     post 'user_token' => 'user_token#create'
   end
-  get '*path', to: redirect('/')
+  get '(*path)', to: 'ember#index'
 end
